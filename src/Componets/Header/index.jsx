@@ -52,11 +52,11 @@ export const Header = () => {
                     <ContentOptions>
                         <Localization />
 
-                        <Button onClick={onOpen}>
+                        <Button>
                             Login
                         </Button>
 
-                        <BurguerMenu  />
+                        <BurguerMenu onClick={onOpen}/>
                     </ContentOptions>
                 </Content>
 

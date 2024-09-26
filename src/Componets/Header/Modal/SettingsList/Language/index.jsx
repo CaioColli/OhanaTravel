@@ -1,14 +1,13 @@
 import styled from 'styled-components'
 import { Item, List } from '../../MenuList'
-import { useContext } from 'react'
-import { LanguageContext } from '@/Context/LanguageContext'
+import { useState } from 'react'
 
 const Label = styled.label`
     align-items: center;
     border-color: var(--Gray);
     border-radius: 10px;
     color: var(--Gray);
-    cursor: pointer;
+    cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
     display: flex;
     font-size: 18px;
     gap: 16px;    
@@ -26,12 +25,10 @@ const Input = styled.input`
 `
 
 
-const Icon = styled.img`
-
-`
+const Icon = styled.img``
 
 export const Language = () => {
-    const { language, setLanguage } = useContext(LanguageContext)
+    const [language, setLanguage] = useState('pt-BR')
 
     const languages = [
         {
@@ -42,25 +39,22 @@ export const Language = () => {
         {
             image: '/Icons/UsaIcon.svg',
             title: 'Inglês (USA)',
-            code: 'en-US'
+            code: 'en-US',
+            disabled: true
         }
     ]
-
-    const handleLanguageChange = (event) => {
-        setLanguage(event.target.value)
-    }
 
     return (
         <List>
             {languages.map((lang, index) => (
                 <Item key={index}>
-                    <Label>
+                    <Label disabled={lang.disabled}>
                         <Input
                             type='radio'
                             name='language'
                             value={lang.code}
                             checked={lang.code === language}
-                            onChange={handleLanguageChange}
+                            disabled={lang.disabled}
                         />
                         <Icon src={lang.image} alt={lang.title} />
                         {lang.title}

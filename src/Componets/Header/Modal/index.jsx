@@ -5,6 +5,13 @@ import { MenuContent } from './MenuList'
 import { SettingsContent } from './SettingsList'
 import { AdministratorContent } from './Support'
 
+const AllContent = styled.div`
+    width: 100%;
+    height: 100vh;
+    background-color: var(--White);
+    overflow-y: scroll;
+`
+
 const ModalHeader = styled.header`
     display: flex;
     justify-content: flex-end;
@@ -15,6 +22,10 @@ const CloseIcon = styled(IoIosClose)`
     cursor: pointer;
     font-size: 56px;
     margin: 24px;
+
+    @media (max-width: 425px) {
+        margin: 0;
+    }
 `
 
 const ModalBody = styled.div`
@@ -44,37 +55,35 @@ export const HeaderModal = ({ isOpen, onClose }) => {
             motionPreset='slideInBottom'
             size='full'
         >
-            <ModalContent
-                w='100%'
-                h='100vh'
-                bg='#ffffff'
-            >
-                <ModalHeader>
-                    <CloseIcon onClick={onClose} />
-                </ModalHeader>
-                <ModalBody>
+            <ModalContent>
+                <AllContent>
+                    <ModalHeader>
+                        <CloseIcon onClick={onClose} />
+                    </ModalHeader>
+                    <ModalBody>
 
-                    <Content>
-                        <Title>
-                            Menu
-                        </Title>
-                        <MenuContent onClose={onClose} />
-                    </Content>
+                        <Content>
+                            <Title>
+                                Menu
+                            </Title>
+                            <MenuContent onClose={onClose} />
+                        </Content>
 
-                    <Content>
-                        <Title>
-                            Configurações
-                        </Title>
-                        <SettingsContent />
-                    </Content>
+                        <Content>
+                            <Title>
+                                Configurações
+                            </Title>
+                            <SettingsContent />
+                        </Content>
 
-                    <Content>
-                        <Title>
-                            Área do administrador
-                        </Title>
-                        <AdministratorContent onClose={onClose} />
-                    </Content>
-                </ModalBody>
+                        <Content>
+                            <Title>
+                                Área do administrador
+                            </Title>
+                            <AdministratorContent onClose={onClose} />
+                        </Content>
+                    </ModalBody>
+                </AllContent>
             </ModalContent>
         </Modal>
     )

@@ -2,7 +2,6 @@ import { StrictMode } from 'react'
 import { createGlobalStyle } from 'styled-components'
 import { createRoot } from 'react-dom/client'
 import { AllRoutes } from './Routes'
-import { LanguageProvider } from './Context/LanguageContext'
 import { CurrencyProvider } from './Context/CurrencyContext'
 
 const GlobalStyle = createGlobalStyle`
@@ -26,10 +25,8 @@ const GlobalStyle = createGlobalStyle`
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <GlobalStyle />
-    <LanguageProvider>
-      <CurrencyProvider>
-        <AllRoutes />
-      </CurrencyProvider>
-    </LanguageProvider>
+    <CurrencyProvider>
+      <AllRoutes />
+    </CurrencyProvider>
   </StrictMode>,
 )
