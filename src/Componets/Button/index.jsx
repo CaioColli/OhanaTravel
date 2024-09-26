@@ -15,9 +15,9 @@ const Container = styled.button`
     }
 `
 
-export const Button = ({ children }) => {
+export const Button = ({ children, onClick }) => {
     return (
-        <Container>
+        <Container onClick={onClick}>
             {children}
         </Container>
     )

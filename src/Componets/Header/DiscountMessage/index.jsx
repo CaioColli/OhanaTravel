@@ -1,11 +1,16 @@
 import styled from 'styled-components'
-import image from '/Images/DiscountIcon.png'
+import image from '/Images/DiscountIcon.svg'
 import { Button } from '@/Componets/Button'
 
 const Container = styled.div`
     display: flex;
     justify-content: space-evenly;
-    width: 50%;
+    width: 100%;
+    padding: 0 20%;
+
+    @media (max-width: 1024px) {
+        padding: 24px 24px 0 24px;
+    }
 `
 
 const Content = styled.div`
@@ -18,7 +23,6 @@ const Content = styled.div`
 const Title = styled.h1`
     font-size: 40px;
     color: var(--White);
-    //font-size: clamp(2rem, 3vw + 1rem, 5rem);
 `
 
 const Paragraph = styled.p`
@@ -26,13 +30,13 @@ const Paragraph = styled.p`
     font-size: 24px;
 `
 
-const Image = styled.div`
-    background-image: url(${image});
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    height: 200px;
+const Image = styled.img`
+    height: 150px;
     width: 150px;
+
+    @media (max-width: 1024px) {
+        display: none;
+    }
 `
 
 
@@ -44,14 +48,14 @@ export const DiscountMessage = () => {
                     Faça login e economize
                 </Title>
                 <Paragraph>
-                    Economize 10% ou mais em acomodações participantes com o ícone de etiqueta
+                    Economize 10% ou mais em acomodações participantes com o ícone de etiqueta.
                 </Paragraph>
                 <Button>
                     Faça o login
                 </Button>
             </Content>
 
-            <Image />
+            <Image src={image} />
         </Container>
     )
 }

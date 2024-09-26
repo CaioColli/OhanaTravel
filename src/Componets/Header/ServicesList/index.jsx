@@ -5,6 +5,10 @@ import { useNavigate } from 'react-router-dom'
 const Container = styled.div`
     display: flex;
     padding: 16px 0 50px 0;
+
+    @media (max-width: 1024px) {
+        display: none;
+    }
 `
 
 const ServicesList = styled.ul`
@@ -52,12 +56,12 @@ export const Services = () => {
             path: '/hospedagens'
         },
         {
-            icon: FaCar,
+            icon: FaShuttleVan,
             service: 'Turismo',
             path: '/turismo'
         },
         {
-            icon: FaShuttleVan,
+            icon: FaCar,
             service: 'Aluguel',
             path: '/aluguel'
         },

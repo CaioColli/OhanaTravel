@@ -5,6 +5,10 @@ const List = styled.ul`
     align-items: center;
     display: flex;
     gap: 32px;
+
+    @media (max-width: 1024px) {
+        display: none;
+    }
 `
 
 const Item = styled.li`

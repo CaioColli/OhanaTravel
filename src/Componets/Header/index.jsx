@@ -4,6 +4,9 @@ import { Services } from './ServicesList'
 import { useNavigate } from 'react-router-dom'
 import { Localization } from './LocalizationList'
 import { DiscountMessage } from './DiscountMessage'
+import { BurguerMenu } from './BurguerMenu'
+import { useDisclosure } from '@chakra-ui/react'
+import { HeaderModal } from './Modal'
 
 const Container = styled.header`
     align-items: center;
@@ -36,26 +39,33 @@ const ContentOptions = styled.div`
 
 export const Header = () => {
     const navigate = useNavigate()
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
-        <Container>
-            <Content>
-                <HomeButton onClick={() => navigate('/')}>
-                    OhanaTravel
-                </HomeButton>
+        <>
+            <Container>
+                <Content>
+                    <HomeButton onClick={() => navigate('/')}>
+                        OhanaTravel
+                    </HomeButton>
 
-                <ContentOptions>
-                    <Localization />
+                    <ContentOptions>
+                        <Localization />
 
-                    <Button>
-                        Login
-                    </Button>
-                </ContentOptions>
-            </Content>
+                        <Button onClick={onOpen}>
+                            Login
+                        </Button>
 
-            <Services />
+                        <BurguerMenu  />
+                    </ContentOptions>
+                </Content>
 
-            <DiscountMessage />
-        </Container>
+                <Services />
+
+                <DiscountMessage />
+            </Container>
+
+            <HeaderModal isOpen={isOpen} onClose={onClose}/>
+        </>
     )
 }
