@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import image from '/Images/DiscountIcon.svg'
 import { Button } from '@/Componets/Button'
+import { Link } from 'react-router-dom'
 
 const Container = styled.div`
     display: flex;
@@ -39,6 +40,9 @@ const Image = styled.img`
     }
 `
 
+const StyledLink = styled(Link)`
+    all: unset;
+`
 
 export const DiscountMessage = () => {
     return (
@@ -47,12 +51,16 @@ export const DiscountMessage = () => {
                 <Title>
                     Faça login e economize
                 </Title>
+
                 <Paragraph>
                     Economize 10% ou mais em acomodações participantes com o ícone de etiqueta.
                 </Paragraph>
-                <Button>
-                    Faça o login
-                </Button>
+
+                <StyledLink to='login'>
+                    <Button>
+                        Faça o login
+                    </Button>
+                </StyledLink>
             </Content>
 
             <Image src={image} />

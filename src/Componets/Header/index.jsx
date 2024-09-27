@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Button } from '../Button'
 import { Services } from './ServicesList'
-import { useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Localization } from './LocalizationList'
 import { DiscountMessage } from './DiscountMessage'
 import { BurguerMenu } from './BurguerMenu'
@@ -15,7 +15,12 @@ const Container = styled.header`
     flex-direction: column;
     gap: 16px;
     padding-bottom: 120px;
+
+    @media (max-width: 450px) {
+        padding-bottom: 48px;
+    }
 `
+
 const Content = styled.div`
     align-items: center;
     display: flex;
@@ -37,9 +42,18 @@ const ContentOptions = styled.div`
     gap: 24px;
 `
 
+const StyledLink = styled(Link)`
+    all: unset;
+`
+
 export const Header = () => {
     const navigate = useNavigate()
+    const location = useLocation()
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const hiddenPaths = ['/login']
+
+    const isHiddenRoute = hiddenPaths.includes(location.pathname)
 
     return (
         <>
@@ -52,20 +66,29 @@ export const Header = () => {
                     <ContentOptions>
                         <Localization />
 
-                        <Button>
-                            Login
-                        </Button>
+                        {!isHiddenRoute && (
+                            <>
+                                <StyledLink to='login'>
+                                    <Button>
+                                        Login
+                                    </Button>
+                                </StyledLink>
+                            </>
+                        )}
 
-                        <BurguerMenu onClick={onOpen}/>
+                        <BurguerMenu onClick={onOpen} />
                     </ContentOptions>
                 </Content>
 
-                <Services />
-
-                <DiscountMessage />
+                {!isHiddenRoute && (
+                    <>
+                        <Services />
+                        <DiscountMessage />
+                    </>
+                )}
             </Container>
 
-            <HeaderModal isOpen={isOpen} onClose={onClose}/>
+            <HeaderModal isOpen={isOpen} onClose={onClose} />
         </>
     )
 }

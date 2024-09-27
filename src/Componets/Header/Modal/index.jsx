@@ -23,7 +23,7 @@ const CloseIcon = styled(IoIosClose)`
     font-size: 56px;
     margin: 24px;
 
-    @media (max-width: 425px) {
+    @media (max-width: 450px) {
         margin: 0;
     }
 `

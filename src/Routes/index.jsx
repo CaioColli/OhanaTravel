@@ -1,4 +1,5 @@
 import { Accommodations } from '@/Pages/Accommodations'
+import { Login } from '@/Pages/AuthWrapper/Login'
 import { HomePage } from '@/Pages/HomePage'
 import { PagePattern } from '@/Pages/PagePattern'
 import { Rent } from '@/Pages/Rent'
@@ -14,6 +15,7 @@ export const AllRoutes = () => {
                     <Route path='hospedagens' element={<Accommodations />}/>
                     <Route path='turismo' element={<Tourism />}/>
                     <Route path='aluguel' element={<Rent />}/>
+                    <Route path='login' element={<Login />}/>
                 </Route>
             </Routes>
         </BrowserRouter>
