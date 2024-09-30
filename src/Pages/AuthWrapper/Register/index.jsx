@@ -62,8 +62,18 @@ export const Register = () => {
                     navigate('/login')
                 }, 2000)
             })
-            .catch(() => {
-                alert('Ocorreu um erro inesperado, tente novamente mais tarde')
+            .catch((error) => {
+                setIsLoading(false)
+
+                const errorMessage = error.response?.data || 'Ocorreu um erro inesperado, tente novamente mais tarde'
+
+                Swal.fire({
+                    title: "Erro ao cadastrar",
+                    text: errorMessage,
+                    timer: 2000,
+                    icon: "error",
+                    showConfirmButton: false
+                })
             })
     }
 
