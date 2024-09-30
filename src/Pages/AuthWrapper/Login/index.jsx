@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Input } from '../Input'
 import { SubmitButton } from '../Button'
+import { Link } from 'react-router-dom'
 
 const Container = styled.section`
     display: flex;
@@ -12,24 +13,24 @@ const Content = styled.div`
     display: flex;
     flex-direction: column;
     margin: 120px 0;
+    gap: 48px;
 
     @media (max-width: 450px) {
         margin: 48px 0;
     }
 `
 
-const Title = styled.h2`
+export const Title = styled.h2`
     color: var(--Black);
     font-weight: bold;
     font-size: clamp(20px, 4vw , 32px);
 `
 
-const Form = styled.form`
+export const Form = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 24px;
-    padding: 48px 0 16px 0;
 `
 
 const AlternativeOptions = styled.div`
@@ -41,7 +42,11 @@ const AlternativeOptions = styled.div`
     padding-bottom: 8px;
 `
 
-const Button = styled.button.withConfig({
+const StyledLink = styled(Link)`
+    all: unset;
+`
+
+export const Button = styled.button.withConfig({
     shouldForwardProp: (prop) => !['small', 'blue'].includes(prop)
 })`
     all: unset;
@@ -65,9 +70,11 @@ export const Login = () => {
                 </Form>
 
                 <AlternativeOptions>
-                    <Button blue>
-                        Criar uma conta
-                    </Button>
+                    <StyledLink to='/registrar'>
+                        <Button blue>
+                            Criar uma conta
+                        </Button>
+                    </StyledLink>
 
                     <Button small>
                         Esqueci minha senha

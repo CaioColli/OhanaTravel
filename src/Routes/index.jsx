@@ -1,5 +1,6 @@
 import { Accommodations } from '@/Pages/Accommodations'
 import { Login } from '@/Pages/AuthWrapper/Login'
+import { Register } from '@/Pages/AuthWrapper/Register'
 import { HomePage } from '@/Pages/HomePage'
 import { PagePattern } from '@/Pages/PagePattern'
 import { Rent } from '@/Pages/Rent'
@@ -16,6 +17,7 @@ export const AllRoutes = () => {
                     <Route path='turismo' element={<Tourism />}/>
                     <Route path='aluguel' element={<Rent />}/>
                     <Route path='login' element={<Login />}/>
+                    <Route path='registrar' element={<Register />}/>
                 </Route>
             </Routes>
         </BrowserRouter>

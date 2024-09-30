@@ -51,7 +51,7 @@ export const Header = () => {
     const location = useLocation()
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    const hiddenPaths = ['/login']
+    const hiddenPaths = ['/login', '/registrar']
 
     const isHiddenRoute = hiddenPaths.includes(location.pathname)
 

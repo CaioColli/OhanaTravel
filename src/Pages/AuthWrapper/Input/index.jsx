@@ -23,13 +23,13 @@ const StyledInput = styled.input`
     }
 `
 
-export const Input = ({ label, placeholder, type }) => {
+export const Input = ({ label, placeholder, type, onChange }) => {
     return (
         <Content>
             <Label>
                 {label}
             </Label>
-            <StyledInput placeholder={placeholder} type={type}/>
+            <StyledInput placeholder={placeholder} type={type} onChange={onChange}/>
         </Content>
     )
 }
