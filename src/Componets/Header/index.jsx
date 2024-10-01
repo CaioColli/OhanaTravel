@@ -9,6 +9,7 @@ import { useDisclosure } from '@chakra-ui/react'
 import { HeaderModal } from './Modal'
 import { useContext, useState } from 'react'
 import { UserContext } from '@/Context/UserLogin'
+import { UserProfile } from './UserProfile'
 
 const Container = styled.header`
     align-items: center;
@@ -78,6 +79,10 @@ export const Header = () => {
                                             Login
                                         </Button>
                                     </StyledLink>
+                                )}
+
+                                {loggedIn && (
+                                    <UserProfile />
                                 )}
                             </>
                         )}

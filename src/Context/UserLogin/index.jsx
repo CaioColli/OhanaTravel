@@ -9,9 +9,10 @@ export const UserProvider = ({ children }) => {
     const [loggedIn, setLoggedIn] = useState(token != null)
     // Estou guardando o nome do usuário
     const [userName, setUserName] = useState(sessionStorage.getItem('userName') || '')
+    const [isAdmin, setIsAdmin] = useState(sessionStorage.getItem('isAdmin') === 'true')
 
     return (
-        <UserContext.Provider value={{ loggedIn, setLoggedIn, userName, setUserName}}>
+        <UserContext.Provider value={{ loggedIn, setLoggedIn, userName, setUserName, isAdmin, setIsAdmin}}>
             {children}
         </UserContext.Provider>
     )

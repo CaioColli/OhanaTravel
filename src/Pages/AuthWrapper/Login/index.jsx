@@ -61,7 +61,7 @@ export const Button = styled.button.withConfig({
 `
 
 export const Login = () => {
-    const { setLoggedIn, setUserName } = useContext(UserContext)
+    const { setLoggedIn, setUserName, setIsAdmin } = useContext(UserContext)
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -86,7 +86,9 @@ export const Login = () => {
                 // Guardo o login com seu token temporariamente para que caso usuario recarregar página não fazer logout
                 sessionStorage.setItem('token', res.data.idToken) // idToken vem do back
                 sessionStorage.setItem('userName', res.data.firstName)
+                sessionStorage.setItem('isAdmin', res.data.isAdmin)
                 setUserName(res.data.firstName)
+                setIsAdmin(res.data.isAdmin)
 
                 setEmail('')
                 setPassword('')
