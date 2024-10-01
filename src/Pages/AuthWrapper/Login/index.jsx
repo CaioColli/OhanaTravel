@@ -102,7 +102,7 @@ export const Login = () => {
             .catch((error) => {
                 setIsLoading(false)
 
-                const errorMessage = error.response?.data || 'Ocorreu um erro inesperado, tente novamente mais tarde'
+                const errorMessage = error.response?.data.message || 'Ocorreu um erro inesperado, tente novamente mais tarde'
 
                 Swal.fire({
                     title: "Erro ao fazer o login",
