@@ -3,10 +3,10 @@ import { Input } from '../Input'
 import { SubmitButton } from '../Button'
 import { Link, useNavigate } from 'react-router-dom'
 import { useContext, useState } from 'react'
-import axios from 'axios'
 import Swal from 'sweetalert2'
 import { UserContext } from '@/Context/UserLogin'
 import { CircularProgress } from '@chakra-ui/react'
+import { http } from '@/Services/Request'
 
 const Container = styled.section`
     display: flex;
@@ -81,7 +81,7 @@ export const Login = () => {
         }
 
         // Mudar URL
-        axios.post('http://localhost:8000/login', user)
+        http.post('/login', user)
             .then(res => {
                 // Guardo o login com seu token temporariamente para que caso usuario recarregar página não fazer logout
                 sessionStorage.setItem('token', res.data.idToken) // idToken vem do back

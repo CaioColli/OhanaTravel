@@ -3,10 +3,10 @@ import { Form, Title } from '../Login'
 import { Input } from '../Input'
 import { SubmitButton } from '../Button'
 import { useState } from 'react'
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { CircularProgress } from '@chakra-ui/react'
+import { http } from '@/Services/Request'
 
 const Container = styled.section`
     display: flex;
@@ -44,7 +44,7 @@ export const Register = () => {
         }
 
         // Mudar URL
-        axios.post('http://localhost:8000/registrar', newUser)
+        http.post('/registrar', newUser)
             .then(() => {
                 setFirstName('')
                 setLastName('')
