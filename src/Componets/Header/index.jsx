@@ -7,6 +7,8 @@ import { DiscountMessage } from './DiscountMessage'
 import { BurguerMenu } from './BurguerMenu'
 import { useDisclosure } from '@chakra-ui/react'
 import { HeaderModal } from './Modal'
+import { useContext, useState } from 'react'
+import { UserContext } from '@/Context/UserLogin'
 
 const Container = styled.header`
     align-items: center;
@@ -47,12 +49,14 @@ const StyledLink = styled(Link)`
 `
 
 export const Header = () => {
+    const { loggedIn } = useContext(UserContext)
+
     const navigate = useNavigate()
-    const location = useLocation()
+
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const hiddenPaths = ['/login', '/registrar']
-
+    const location = useLocation()
     const isHiddenRoute = hiddenPaths.includes(location.pathname)
 
     return (
@@ -68,11 +72,13 @@ export const Header = () => {
 
                         {!isHiddenRoute && (
                             <>
-                                <StyledLink to='login'>
-                                    <Button>
-                                        Login
-                                    </Button>
-                                </StyledLink>
+                                {!loggedIn && (
+                                    <StyledLink to='login'>
+                                        <Button>
+                                            Login
+                                        </Button>
+                                    </StyledLink>
+                                )}
                             </>
                         )}
 

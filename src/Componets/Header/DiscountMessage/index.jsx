@@ -2,6 +2,8 @@ import styled from 'styled-components'
 import image from '/Images/DiscountIcon.svg'
 import { Button } from '@/Componets/Button'
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { UserContext } from '@/Context/UserLogin'
 
 const Container = styled.div`
     display: flex;
@@ -45,22 +47,34 @@ const StyledLink = styled(Link)`
 `
 
 export const DiscountMessage = () => {
+    const { loggedIn, userName } = useContext(UserContext)
+
     return (
         <Container>
             <Content>
-                <Title>
-                    Faça login e economize
-                </Title>
+                {!loggedIn && (
+                    <Title>
+                        Faça login e economize
+                    </Title>
+                )}
+
+                {loggedIn && (
+                    <Title>
+                        {`Olá ${userName}`}
+                    </Title>
+                )}
 
                 <Paragraph>
                     Economize 10% ou mais em acomodações participantes com o ícone de etiqueta.
                 </Paragraph>
 
-                <StyledLink to='login'>
-                    <Button>
-                        Faça o login
-                    </Button>
-                </StyledLink>
+                {!loggedIn && (
+                    <StyledLink to='login'>
+                        <Button>
+                            Faça o login
+                        </Button>
+                    </StyledLink>
+                )}
             </Content>
 
             <Image src={image} />

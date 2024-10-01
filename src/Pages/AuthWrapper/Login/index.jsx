@@ -1,7 +1,12 @@
 import styled from 'styled-components'
 import { Input } from '../Input'
 import { SubmitButton } from '../Button'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useContext, useState } from 'react'
+import axios from 'axios'
+import Swal from 'sweetalert2'
+import { UserContext } from '@/Context/UserLogin'
+import { CircularProgress } from '@chakra-ui/react'
 
 const Container = styled.section`
     display: flex;
@@ -56,6 +61,57 @@ export const Button = styled.button.withConfig({
 `
 
 export const Login = () => {
+    const { setLoggedIn, setUserName } = useContext(UserContext)
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const [isLoading, setIsLoading] = useState(false)
+
+    const navigate = useNavigate()
+
+    const submitForm = (event) => {
+        event.preventDefault()
+
+        setIsLoading(true)
+
+        const user = {
+            email,
+            password
+        }
+
+        // Mudar URL
+        axios.post('http://localhost:8000/login', user)
+            .then(res => {
+                // Guardo o login com seu token temporariamente para que caso usuario recarregar página não fazer logout
+                sessionStorage.setItem('token', res.data.idToken) // idToken vem do back
+                sessionStorage.setItem('userName', res.data.firstName)
+                setUserName(res.data.firstName)
+
+                setEmail('')
+                setPassword('')
+                setLoggedIn(true)
+
+                setTimeout(() => {
+                    navigate('/')
+                    setIsLoading(false)
+                }, 1000)
+            })
+            .catch((error) => {
+                setIsLoading(false)
+
+                const errorMessage = error.response?.data || 'Ocorreu um erro inesperado, tente novamente mais tarde'
+
+                Swal.fire({
+                    title: "Erro ao fazer o login",
+                    text: errorMessage,
+                    timer: 2000,
+                    icon: "error",
+                    showConfirmButton: false
+                })
+            })
+    }
+
     return (
         <Container>
             <Content>
@@ -63,10 +119,14 @@ export const Login = () => {
                     Faça o login ou crie uma conta
                 </Title>
 
-                <Form>
-                    <Input label='E-mail' placeholder='Insira seu e-mail' type='email' />
-                    <Input label='Senha' placeholder='Insira sua senha' type='password' />
+                <Form onSubmit={submitForm}>
+                    <Input label='E-mail' placeholder='Insira seu e-mail' type='email' onChange={(e) => setEmail(e.target.value)} />
+                    <Input label='Senha' placeholder='Insira sua senha' type='password' onChange={(e) => setPassword(e.target.value)} />
                     <SubmitButton text='Logar' />
+
+                    {isLoading && (
+                        <CircularProgress isIndeterminate color='#003B95' />
+                    )}
                 </Form>
 
                 <AlternativeOptions>

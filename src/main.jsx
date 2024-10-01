@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components'
 import { createRoot } from 'react-dom/client'
 import { AllRoutes } from './Routes'
 import { CurrencyProvider } from './Context/CurrencyContext'
+import { UserProvider } from './Context/UserLogin'
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -26,7 +27,9 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <GlobalStyle />
     <CurrencyProvider>
-      <AllRoutes />
+      <UserProvider>
+        <AllRoutes />
+      </UserProvider>
     </CurrencyProvider>
   </StrictMode>,
 )
