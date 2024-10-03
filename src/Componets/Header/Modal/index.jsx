@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import { MenuContent } from './MenuList'
 import { SettingsContent } from './SettingsList'
 import { AdministratorContent } from './Support'
+import { UserContext } from '@/Context/UserLogin'
+import { useContext } from 'react'
 
 const AllContent = styled.div`
     width: 100%;
@@ -47,6 +49,8 @@ const Title = styled.h2`
 
 
 export const HeaderModal = ({ isOpen, onClose }) => {
+    const { loggedIn } = useContext(UserContext)
+
     return (
         <Modal
             isOpen={isOpen}
@@ -76,12 +80,14 @@ export const HeaderModal = ({ isOpen, onClose }) => {
                             <SettingsContent />
                         </Content>
 
-                        <Content>
-                            <Title>
-                                Área do administrador
-                            </Title>
-                            <AdministratorContent onClose={onClose} />
-                        </Content>
+                        {loggedIn && (
+                            <Content>
+                                <Title>
+                                    Área do administrador
+                                </Title>
+                                <AdministratorContent onClose={onClose} />
+                            </Content>
+                        )}
                     </ModalBody>
                 </AllContent>
             </ModalContent>
