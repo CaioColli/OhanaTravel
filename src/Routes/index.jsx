@@ -1,3 +1,4 @@
+import { CheckAdm } from '@/Componets/CheckAdm'
 import { Accommodations } from '@/Pages/Accommodations'
 import { Administrator } from '@/Pages/Administrator'
 import { Login } from '@/Pages/AuthWrapper/Login'
@@ -13,13 +14,20 @@ export const AllRoutes = () => {
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<PagePattern />}>
-                    <Route index element={<HomePage />}/>
-                    <Route path='hospedagens' element={<Accommodations />}/>
-                    <Route path='turismo' element={<Tourism />}/>
-                    <Route path='aluguel' element={<Rent />}/>
-                    <Route path='login' element={<Login />}/>
-                    <Route path='registrar' element={<Register />}/>
-                    <Route path='administrador' element={<Administrator />}/>
+                    <Route index element={<HomePage />} />
+                    <Route path='hospedagens' element={<Accommodations />} />
+                    <Route path='turismo' element={<Tourism />} />
+                    <Route path='aluguel' element={<Rent />} />
+                    <Route path='login' element={<Login />} />
+                    <Route path='registrar' element={<Register />} />
+
+                    <Route
+                        path='administrador'
+                        element={
+                            <CheckAdm>
+                                <Administrator />
+                            </CheckAdm>
+                        } />
                 </Route>
             </Routes>
         </BrowserRouter>
