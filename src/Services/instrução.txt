@@ -1,1 +1,0 @@
-Criar dentro de services todas as chamadas da api
