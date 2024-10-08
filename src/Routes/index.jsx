@@ -1,4 +1,5 @@
 import { Accommodations } from '@/Pages/Accommodations'
+import { Administrator } from '@/Pages/Administrator'
 import { Login } from '@/Pages/AuthWrapper/Login'
 import { Register } from '@/Pages/AuthWrapper/Register'
 import { HomePage } from '@/Pages/HomePage'
@@ -18,6 +19,7 @@ export const AllRoutes = () => {
                     <Route path='aluguel' element={<Rent />}/>
                     <Route path='login' element={<Login />}/>
                     <Route path='registrar' element={<Register />}/>
+                    <Route path='administrador' element={<Administrator />}/>
                 </Route>
             </Routes>
         </BrowserRouter>

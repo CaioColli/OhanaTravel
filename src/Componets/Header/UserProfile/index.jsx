@@ -115,7 +115,7 @@ export const UserProfile = () => {
 
                     {isAdmin && (
                         <MenuItem>
-                            <ItemContent>
+                            <ItemContent to='administrador'>
                                 <MenuIcon>
                                     <BiCoinStack />
                                 </MenuIcon>

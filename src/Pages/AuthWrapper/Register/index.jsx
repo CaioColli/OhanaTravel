@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 import { Form, Title } from '../Login'
-import { Input } from '../Input'
 import { SubmitButton } from '../Button'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { CircularProgress } from '@chakra-ui/react'
 import { http } from '@/Services/Request'
+import { Input } from '../Input'
 
 const Container = styled.section`
     display: flex;

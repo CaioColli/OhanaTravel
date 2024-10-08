@@ -17,9 +17,11 @@ const GlobalStyle = createGlobalStyle`
     --BlueBg: #003B95;
     --White: #ffffff;
     --Blue: #006CE4;
-    --Transparent: rgba(255,255,255, 20%)
+    --Transparent: rgba(255,255,255, 20%);
+    --LightGray: #CCCCCC;
     --Black: #000000;
     --Gray: #727272;
+    --Yellow: #FFB74D;
   }
 `
 
