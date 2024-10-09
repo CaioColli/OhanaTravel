@@ -7,13 +7,7 @@ import {
     AccordionIcon,
 } from '@chakra-ui/react'
 
-const AccordionContainer = styled(Accordion)`
-    width: 100%;
-`
-
-const AccordionContent = styled(AccordionItem)``
-
-const Header = styled(AccordionButton)`
+const Button = styled(AccordionButton)`
     background-color: var(--Yellow);
     border-radius: 10px;
     border: none;
@@ -28,20 +22,20 @@ const Header = styled(AccordionButton)`
 
 const ArrowIcon = styled(AccordionIcon)``
 
-export const SecondaryCustomAccordion = ({ children, title}) => {
+export const SecondaryCustomAccordion = ({ children, title }) => {
     return (
         <>
-            <AccordionContainer allowToggle>
-                <AccordionContent>
-                    <Header>
+            <Accordion allowToggle>
+                <AccordionItem>
+                    <Button>
                         {title}
                         <ArrowIcon />
-                    </Header>
+                    </Button>
                     <AccordionPanel>
                         {children}
                     </AccordionPanel>
-                </AccordionContent>
-            </AccordionContainer>
+                </AccordionItem>
+            </Accordion>
         </>
     )
 }

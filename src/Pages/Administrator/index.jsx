@@ -8,8 +8,9 @@ const Container = styled.section`
 `
 
 const Content = styled.div`
+    max-width: 1360px;
     padding: 48px 0 120px 0;
-    width: 70%;
+    width: 100%;
 `
 
 const AccordionContent = styled.div``
