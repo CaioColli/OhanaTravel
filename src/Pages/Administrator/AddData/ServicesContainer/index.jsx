@@ -37,10 +37,10 @@ const ServiceTitle = styled.p`
     padding: 8px;
 `
 
-export const RegisteredServices = ({ key, onClick, text }) => {
+export const RegisteredServices = ({ onClick, text }) => {
     return (
         <>
-            <ServicesContent key={key}>
+            <ServicesContent>
                 <ServicesHeader>
                     <HeaderButton onClick={onClick}>
                         <HeaderIcon />

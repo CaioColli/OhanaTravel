@@ -6,6 +6,8 @@ import { useState } from 'react'
 import { InputTypeFile } from '../../Input/TypeFile'
 import { RegisteredServices } from '../ServicesContainer'
 import { RegisteredImages } from '../ImagesContainer'
+import { useAddingServices } from '../Hook/AddingServices'
+import { useAddingImages } from '../Hook/AddingImages'
 
 const Form = styled.form`
     background-color: var(--LightGray);
@@ -63,54 +65,22 @@ const ImagesContainer = styled.div`
 `
 
 export const AddHotel = () => {
-    const [servicesIncluded, setServicesIncluded] = useState([])
-    const [serviceInput, setServiceInput] = useState('')
-    const [images, setImages] = useState([])
+    const { serviceInput, setServiceInput, servicesIncluded, submitFormServices, deleteService } = useAddingServices()
+    const { images, handleImageChange, deleteImage } = useAddingImages()
 
-    const submitFormServices = (event) => {
-        event.preventDefault()
-
-        if (serviceInput.trim()) {
-            setServicesIncluded([...servicesIncluded, serviceInput])
-            setServiceInput('')
-        }
-    }
-
-    const deleteService = (event, index) => {
-        event.preventDefault()
-        setServicesIncluded(servicesIncluded.filter((_, i) => i !== index))
-    }
-
-    const handleImageChange = (event) => {
-        const files = Array.from(event.target.files)
-
-        // Verifica se a imagem já existe no estado
-        const newImages = files.filter((file) => {
-            const exists = images.some((image) => image.name === file.name)
-
-            if (exists) {
-                alert('Já existe')
-                return false
-            }
-            return true
-        })
-
-        setImages((prevImages) => [...prevImages, ...newImages])
-    }
-
-    const deleteImage = (event, index) => {
-        event.preventDefault()
-        setImages(images.filter((_, i) => i !== index))
-    }
-
+    const [hotelName, setHotelName] = useState('')
+    const [standardValue, setStandardValue] = useState('')
+    const [doubleStandardValue, setDoubleStandardValue] = useState('')
+    const [deluxeValue, setDeluxeValue] = useState('')
+    
     return (
         <>
             <SecondaryCustomAccordion title='Adicionar hotel'>
                 <Form>
-                    <Input placeholder='Nome do hotel' type='text' />
-                    <Input placeholder='Valor standard' type='number' />
-                    <Input placeholder='Valor duplo standard' type='number' />
-                    <Input placeholder='Valor deluxe' type='number' />
+                    <Input placeholder='Nome do hotel' type='text' onChange={(e) => setHotelName(e.target.value)} />
+                    <Input placeholder='Valor standard' type='number' onChange={(e) => setStandardValue(e.target.value)} />
+                    <Input placeholder='Valor duplo standard' type='number' onChange={(e) => setDoubleStandardValue(e.target.value)} />
+                    <Input placeholder='Valor deluxe' type='number' onChange={(e) => setDeluxeValue(e.target.value)} />
 
                     <ServicesForm>
                         <Input

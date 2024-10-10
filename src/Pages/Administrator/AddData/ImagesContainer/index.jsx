@@ -1,18 +1,15 @@
 import { IoCloseCircleOutline } from 'react-icons/io5'
 import styled from 'styled-components'
 
-const ImagesContent = styled.div`
+const ImageContainer = styled.div`
     align-items: center;
     background-color: var(--White);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    min-width: 150px;
-    min-height: 150px;
-    width: fit-content;
 `
 
-const ImagesHeader = styled.header`
+const ImageHeader = styled.header`
     align-items: center;
     background-color: var(--BlueBg);
     border-radius: 10px 10px 0 0;
@@ -29,28 +26,36 @@ const HeaderButton = styled.button`
     max-width: 24px;
 `
 
+const ImageContent = styled.div`
+    max-height: 100px;
+`
+
 const HeaderIcon = styled(IoCloseCircleOutline)`
     color: var(--White);
     font-size: 24px;
 `
 
 const Image = styled.img`
-    max-width: 150px;
+    border-radius: 0 0 10px 10px;
     max-height: 150px;
+    max-width: 150px;
+    min-height: 100%;
 `
 
-export const RegisteredImages = ({ index, onClick, image, alt }) => {
+export const RegisteredImages = ({ onClick, image, alt }) => {
     return (
         <>
-            <ImagesContent key={index}>
-                <ImagesHeader onClick={onClick}>
+            <ImageContainer>
+                <ImageHeader onClick={onClick}>
                     <HeaderButton>
                         <HeaderIcon />
                     </HeaderButton>
-                </ImagesHeader>
+                </ImageHeader>
 
-                <Image src={image} alt={alt} />
-            </ImagesContent>
+                <ImageContent>
+                    <Image src={image} alt={alt} />
+                </ImageContent>
+            </ImageContainer>
         </>
     )
 }
